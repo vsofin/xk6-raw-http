@@ -8,12 +8,12 @@ import (
 )
 
 func init() {
-	modules.Register("k6/x/tcp", new(TCP))
+	modules.Register("k6/x/tls", new(result))
 }
 
-type TCP struct{}
+type result struct{}
 
-func (tcp *TCP) Connect(addr string) (net.Conn, error) {
+func (result *result) Connect(addr string) (net.Conn, error) {
 	conf := &tls.Config{
 		InsecureSkipVerify: true,
 	}

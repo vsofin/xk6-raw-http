@@ -1,4 +1,4 @@
-# xk6-tcp
+# xk6-tls
 
 A k6 extension for sending strings via TLS
 
@@ -27,7 +27,7 @@ Then:
 ## Example
 
 ```javascript
-import tcp from 'k6/x/tcp';
+import tls from 'k6/x/tls';
 import { check } from 'k6';
 
 const conn = tls.connect('host:port');
