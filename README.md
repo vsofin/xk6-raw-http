@@ -1,6 +1,6 @@
-# xk6-tls
+# xk6-raw-http
 
-A k6 extension for sending strings via TLS
+Extension of the k6 for sending strings via HTTP and HTTPS in a raw format
 
 ## Build
 
@@ -20,8 +20,7 @@ Then:
 2. Build the binary:
 
   ```shell
-  xk6 build master \
-    --with github.com/vsofin/xk6-raw-http
+  xk6 build --with github.com/vsofin/xk6-raw-http@latest --output ./
   ```
 
 ## Example 1
@@ -47,8 +46,6 @@ export default function () {
 ```javascript
 import worker from 'k6/x/raw-http';
 import { check } from 'k6';
-
-const conn = worker.connectTCP('host:port');
 
 export default function () {
     const conn = worker.connectTLS('host:port');

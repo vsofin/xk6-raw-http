@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	modules.Register("k6/x/tls", new(result))
+	modules.Register("k6/x/raw-http", new(result))
 }
 
 type result struct{}

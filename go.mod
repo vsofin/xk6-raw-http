@@ -1,4 +1,4 @@
-module github.com/vsofin/xk6-raw-http
+module github.com/vsofin/raw-http
 
 go 1.18
 
