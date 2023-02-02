@@ -1,4 +1,4 @@
-module github.com/vsofin/xk6-tls
+module github.com/vsofin/xk6-raw-http
 
 go 1.18
 
