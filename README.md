@@ -21,23 +21,36 @@ Then:
 
   ```shell
   xk6 build master \
-    --with github.com/vsofin/xk6-tls
+    --with github.com/vsofin/xk6-raw-http
   ```
 
-## Example
+## Example 1
 
 ```javascript
-import tls from 'k6/x/tls';
+import worker from 'k6/x/raw-http';
 import { check } from 'k6';
 
-const conn = tls.connect('host:port');
+const conn = worker.connectTCP('host:port');
 
 export default function () {
-    tls.writeLn(conn, 'Say Hello');
-    let res = String.fromCharCode(...tls.read(conn, 1024))
+    worker.writeTCP(conn, 'Say Hello\n');
+    let res = String.fromCharCode(...worker.readTCP(conn, 1024))
     check (res, {
         'verify ag tag': (res) => res.includes('Hello')
     });
-    tls.close(conn);
+    worker.closeTCP(conn);
+}
+```
+
+## Example 2
+
+```javascript
+import worker from 'k6/x/raw-http';
+import { check } from 'k6';
+
+const conn = worker.connectTCP('host:port');
+
+export default function () {
+    const conn = worker.connectTLS('host:port');
 }
 ```
