@@ -2,7 +2,6 @@ package worker
 
 import (
 	"crypto/tls"
-	raw_tls "github.com/vsofin/xk6-raw-http/raw-tls"
 	"go.k6.io/k6/js/modules"
 	"log"
 	"net"
@@ -64,6 +63,6 @@ func (result *result) Close(conn net.Conn) error {
 }
 
 func (result *result) SendClientHello() {
-	conn := raw_tls.Conn{}
+	conn := Conn{}
 	conn.MakeClientHello()
 }

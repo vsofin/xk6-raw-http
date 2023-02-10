@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // Package godebug parses the GODEBUG environment variable.
-package raw_tls
+package worker
 
 import "os"
 
