@@ -2,6 +2,7 @@ package worker
 
 import (
 	"crypto/tls"
+	raw_tls "github.com/vsofin/xk6-raw-http/raw-tls"
 	"go.k6.io/k6/js/modules"
 	"log"
 	"net"
@@ -36,7 +37,7 @@ func (result *result) ConnectTCP(addr string) (net.Conn, error) {
 	return conn, nil
 }
 
-func (result *result) WriteTCP(conn net.Conn, data []byte) error {
+func (result *result) Write(conn net.Conn, data []byte) error {
 	_, err := conn.Write(data)
 	if err != nil {
 		return err
@@ -45,7 +46,7 @@ func (result *result) WriteTCP(conn net.Conn, data []byte) error {
 	return nil
 }
 
-func (result *result) ReadTCP(conn net.Conn, size int) ([]byte, error) {
+func (result *result) Read(conn net.Conn, size int) ([]byte, error) {
 	buf := make([]byte, size)
 	_, err := conn.Read(buf)
 	if err != nil {
@@ -54,10 +55,15 @@ func (result *result) ReadTCP(conn net.Conn, size int) ([]byte, error) {
 	return buf, nil
 }
 
-func (result *result) CloseTCP(conn net.Conn) error {
+func (result *result) Close(conn net.Conn) error {
 	err := conn.Close()
 	if err != nil {
 		return err
 	}
 	return nil
+}
+
+func (result *result) SendClientHello() {
+	conn := raw_tls.Conn{}
+	conn.MakeClientHello()
 }
